@@ -34,6 +34,45 @@ public class StrSpliter {
     }
 
     @Test
+    public void email() {
+        //文件路径
+        File file = new File("C:\\Users\\Administrator\\Desktop\\邮箱.txt");
+        String readFile = readFile(file);
+        judgeEmail(readFile);
+    }
+
+    /**
+     * 邮箱验证
+     * 1981462002@qq.com
+     * toly.1994_king@123.com
+     * ggl0228@163.com
+     * wangshizhihao@foxmail.com
+     * tchzw@126.com
+     * 954007646@aw.com
+     * <p>
+     * 用户名:字母、数字、下划线、点
+     * 用户名首字符：字母
+     * 用户：长度小于28
+     * <p>
+     * 域名：.com .cn .com.cn .net.cn .edu .gov .org
+     */
+    private void judgeEmail(String target) {
+
+        String regex = "(?<result>(?<first>\\w)(?<username>[\\w\\.]{0,27})@(?<yuming>[\\w]+\\.(com|cn|com\\.cn|net\\.cn|edu|gov|org)))";
+
+        Pattern pattern = Pattern.compile(regex);//?<result>是取了一个组名
+        Matcher matcher = pattern.matcher(target);
+        StringBuilder sb = new StringBuilder("public static String[] " + "EMAIL" + " = new String[]{");
+
+        while (matcher.find()) {
+            sb.append("\"" + matcher.group("result") + "\",");
+        }
+        sb.append("};");
+        System.out.println(sb.toString());
+    }
+
+
+    @Test
     public void juzi() {
         //你的布局xml所在路径
         File file = new File("C:\\Users\\Administrator\\Desktop\\匆匆.txt");
@@ -51,6 +90,7 @@ public class StrSpliter {
         }
         System.out.println(sb.toString());
     }
+
     @Test
     public void juzi_HTYS() {
         //你的布局xml所在路径
@@ -257,10 +297,10 @@ public class StrSpliter {
 
         for (int i = 0; i < count; i++) {
             if (i == count - 1) {
-                sb.append("R.mipmap."+preFix + (i + 1) + "};");
+                sb.append("R.mipmap." + preFix + (i + 1) + "};");
                 break;
             }
-            sb.append("R.mipmap."+preFix + (i + 1) + ",");
+            sb.append("R.mipmap." + preFix + (i + 1) + ",");
         }
         System.out.println(sb.toString());
 

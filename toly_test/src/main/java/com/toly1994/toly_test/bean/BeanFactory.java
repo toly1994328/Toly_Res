@@ -2,6 +2,7 @@ package com.toly1994.toly_test.bean;
 
 
 import com.toly1994.toly_test.Cons.ResData;
+import com.toly1994.toly_test.Cons.ZData;
 import com.toly1994.toly_test.R;
 import com.toly1994.toly_test.random.ZRandom;
 
@@ -61,7 +62,7 @@ public class BeanFactory {
                 continue;
             }
             beans.add(new MsgBean(ZRandom.rangeInt(0, 1),
-                    "Hello"));
+                    ZRandom.randomChar(ZData.SEN_CONG_CONG)));
         }
         return beans;
     }

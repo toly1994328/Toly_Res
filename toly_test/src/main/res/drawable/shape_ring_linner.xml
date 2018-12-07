@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="ring"
+       android:useLevel="false"
+       android:thickness="12dp">
+    <!--useLevel需要设置为false-->
+
+    <gradient
+        android:angle="45"
+        android:centerColor="@color/cyan"
+        android:endColor="@color/yellow"
+        android:startColor="@color/red"/>
+</shape>
