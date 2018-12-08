@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="48dp"
+        android:height="48dp"
+        android:viewportWidth="100"
+        android:viewportHeight="100">
+    <!--M8,50, l100,0 M0,47, l40,40 M0,52 l40 -40-->
+    <!--M0,50, l100,0 M0,80, l100,0 M0,20 l100 0-->
+    <group android:name="container"
+        android:translateX="8"
+        android:pivotX="50"
+           android:scaleY="0.8"
+           android:scaleX="0.8"
+        android:pivotY="50">
+
+        <path
+            android:name="alpha_anim"
+            android:pathData="@string/path_from"
+            android:strokeWidth="8"
+            android:strokeColor="#000"/>
+    </group>
+</vector>

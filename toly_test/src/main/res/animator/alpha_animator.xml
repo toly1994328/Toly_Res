@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:ordering="sequentially">
+    <objectAnimator
+        android:duration="1500"
+        android:propertyName="strokeAlpha"
+        android:valueFrom="1f"
+        android:valueTo="0.5f"/>
+    <objectAnimator
+        android:duration="1500"
+        android:propertyName="strokeAlpha"
+        android:valueFrom="0.5f"
+        android:valueTo="1f"/>
+</set>

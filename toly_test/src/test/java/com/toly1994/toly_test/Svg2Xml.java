@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 作者：张风捷特烈
@@ -23,9 +25,8 @@ public class Svg2Xml {
 
     @Test
     public void singleSvg() {
-        File file = new File("E:\\Material\\MyUI\\#svg\\字母\\icon_a.svg");
+        File file = new File("C:\\Users\\Administrator\\Desktop\\dao.svg");
         svg2xml(file);
-        svg2xmlFromDir("E:\\Material\\MyUI\\#svg\\字母");
     }
 
     /**
@@ -73,12 +74,16 @@ public class Svg2Xml {
             }
             //收集所有path
             collectPaths(sb.toString(), paths);
+
             //拼接字符串
             StringBuilder outSb = contactStr(paths);
             //写出到磁盘
             File outFile = new File(file.getParentFile(), file.getName().substring(0, file.getName().lastIndexOf(".")) + ".xml");
             fw = new FileWriter(outFile);
             fw.write(outSb.toString());
+
+            System.out.println("转换成功：" + file.getName());
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -111,9 +116,9 @@ public class Svg2Xml {
                 "        android:viewportHeight=\"1024\">\n");
         for (String path : paths) {
             outSb.append("    <path\n" +
-                    "        android:fillColor=\"#FF7F47\"\nandroid:pathData=");
+                    "        android:fillColor=\"#FF7F47\"\nandroid:pathData=\"");
             outSb.append(path);
-            outSb.append("/>");
+            outSb.append("\"/>");
         }
         outSb.append("</vector>");
         return outSb;
@@ -126,27 +131,11 @@ public class Svg2Xml {
      * @param paths
      */
     private static void collectPaths(String result, ArrayList<String> paths) {
-        String[] split = result.split("<path");
-        for (String s : split) {
-            int fPos = s.indexOf("f");
-            int dPos = s.indexOf("d=");
-            if (fPos != -1 && fPos < dPos) {
-                String[] pathTemp = s.split("d=");
-                String path = pathTemp[1].substring(0, pathTemp[1].indexOf("/"));
-                paths.add(path);
-                continue;
-            }
-            if (s.contains("path")) {
-                int endIndex;
-                if (!s.contains("fill")) {
-                    endIndex = s.indexOf("p");
-                } else {
-                    endIndex = Math.min(s.indexOf("f"), s.indexOf("p"));
-                }
-                String path = s.substring(s.indexOf("\""), endIndex);
-                System.out.println(path);
-                paths.add(path);
-            }
+        String regex = "<path d=\"(?<res>(.)*?)\"";
+        Matcher matcher = Pattern.compile(regex).matcher(result);
+        while (matcher.find()) {
+            String path = matcher.group("res");
+            paths.add(path);
         }
     }
 }

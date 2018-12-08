@@ -1,0 +1,16 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/icon_setting">
+    <target
+        android:name="setting_path"
+        android:animation="@animator/alpha_animator"/>
+    <target
+        android:name="container"
+        android:animation="@animator/rotation_animator_360"/>
+    <target
+        android:animation="@animator/color_animator"
+        android:name="setting_path"/>
+    <target
+        android:animation="@animator/trim_path_animator"
+        android:name="setting_path"/>
+</animated-vector>

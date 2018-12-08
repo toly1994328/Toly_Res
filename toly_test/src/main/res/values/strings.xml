@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="path_from">M8,50, l100,0 M0,47, l40,40 M0,52 l40 -40 </string>
+    <string name="path_to">M0,50, l80,0 M0,80, l80,0 M0,20 l80 0</string>
+
 </resources>
