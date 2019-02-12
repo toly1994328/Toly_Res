@@ -5,16 +5,7 @@
         android:viewportWidth="2048"
         android:viewportHeight="2048">
     <group
-        android:name="sword"
-        android:pivotX=""
-        android:pivotY=""
-        android:translateX=""
-        android:translateY=""
-        android:scaleY=""
-        android:scaleX=""
-        android:rotation=""
-
-        >
+        android:name="sword">
 
         <path
 
