@@ -17,10 +17,10 @@ import java.util.List;
  */
 public class BeanFactory {
 
-    public static List<GoodsBean> getGoodsBean() {
+    public static List<GoodsBean> getGoodsBeans() {
         List<GoodsBean> beans = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             beans.add(new GoodsBean(R.mipmap.pic_30, "混沌战士,等比例人形,附加刀及盔甲,2030年爆款,限额三百件,先到先得,售完为止", 6666, 277, "店铺优惠,满100送10"));
             beans.add(new GoodsBean(R.mipmap.pic_1, "蓝夜皮肤,2030年爆款,限额三件,先到先得,售完为止", 99999, 2));
 
@@ -28,26 +28,59 @@ public class BeanFactory {
             beans.add(new GoodsBean(R.mipmap.pic_35, "珍藏,非卖品", 9999999, 1));
             beans.add(new GoodsBean(R.mipmap.pic_7, "黑夜皮肤,附加魔法加成,2030年爆款,限额三百件,先到先得,售完为止", 8888, 277, "店铺优惠,满100送100000"));
 
-
             beans.add(new GoodsBean(R.mipmap.pic_13, "买洞爷湖送银时,只要998,绝对良心价,2030年爆款,限额三百件,先到先得,售完为止", 998, 277, "店铺优惠,满100送100000"));
-
         }
+        return beans;
+    }
 
+    public static List<GoodsBean> getGoodsBeans(int len) {
+        List<GoodsBean> beans = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            beans.add(getGoodsBean(ResData.REA_PIC[ZRandom.rangeInt(0, ResData.REA_PIC.length - 1)]));
+        }
+        return beans;
+    }
+
+
+    /**
+     * 获取头像信息
+     *
+     * @return
+     */
+    public static GoodsBean getGoodsBean(int id) {
+        GoodsBean goodsBean = new GoodsBean();
+        goodsBean.setBuyNum(ZRandom.rangeInt(100, 10000));
+        goodsBean.setImgId(id);
+        goodsBean.setInfo(ZRandom.randomChar(ZData.SEN_CONG_CONG));
+        goodsBean.setPrice(ZRandom.rangeInt(100, 10000));
+        return goodsBean;
+
+    }
+
+    /**
+     * 获取头像信息
+     *
+     * @param len
+     * @return
+     */
+    public static List<IconInfo> getHeadInfos(int len) {
+        List<IconInfo> beans = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            beans.add(getHeadInfo());
+        }
         return beans;
     }
 
     /**
      * 获取头像信息
-     * @param len
+     *
      * @return
      */
-    public static List<IconInfo> getHeadInfo(int len) {
-        List<IconInfo> beans = new ArrayList<>();
-        for (int i = 0; i < len; i++) {
-            beans.add(new IconInfo(ResData.REA_HEAD_ICON[ZRandom.rangeInt(0, 90-1)], ZRandom.randomCnName()));
-        }
-        return beans;
+    public static IconInfo getHeadInfo() {
+        return new IconInfo(ResData.REA_HEAD_ICON[ZRandom.rangeInt(0, 90 - 1)], ZRandom.randomCnName());
+
     }
+
 
     /**
      * 获取随机聊天消息
